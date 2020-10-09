@@ -1,0 +1,39 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <h3>Tarefas a fazer</h3>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Título</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Status</th>
+            <th scope="col">Criada em</th>
+            <th scope="col">Modificada em</th>
+            <th scope="col">Concluída em</th>
+            <th scope="col">Concluída</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of taskList; let i = index">
+            <td>{{task.title}}</td>
+            <td>{{task.description}}</td>
+            <td>{{task.status}}</td>
+            <td>{{datepipe.transform(task.creationDate, 'dd/MM/yyyy HH:mm')}}</td>
+            <td>{{datepipe.transform(task?.modificationDate, 'dd/MM/yyyy HH:mm')}}</td>
+            <td>{{datepipe.transform(task?.conclusionDate, 'dd/MM/yyyy HH:mm')}}</td>
+            <td>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" [checked]="task.status == 'CONCLUÍDA' ? true : false" (change)="changeStatus(task)" id="{{i}}">
+                <label class="custom-control-label" for="{{i}}"></label>
+              </div>
+            </td>
+            <td>
+              <a [routerLink]="['','manage', task.id]"><i class="fa fa-edit fa-lg" ></i></a>
+              &nbsp;
+              <a href=""><i class="fa fa-trash fa-lg" (click)="remove(task)"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

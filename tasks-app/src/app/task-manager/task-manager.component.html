@@ -1,0 +1,20 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+    <h3>{{titleText}} de tarefa</h3>
+    <form [formGroup]="formTask" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="inputTitle">Título</label>
+                <input type="text" class="form-control" id="inputTitle" name="title" formControlName="title" required placeholder="Título">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="inputDescription">Descrição</label>
+                <textarea type="text" id="inputDescription" class="form-control" name="description" formControlName="description" required placeholder="Descrição"></textarea>
+            </div>
+        </div>
+        <button (click)="toPageList()" class="btn btn-warning">Voltar</button>&nbsp;
+        <button type="submit" class="btn btn-primary">{{btnText}}</button>
+    </form>
+</div>
